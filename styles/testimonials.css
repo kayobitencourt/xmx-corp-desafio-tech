@@ -277,9 +277,12 @@
   .testimonials-track {
     gap: 16px;
     margin-right: -20px;
-    padding-right: 20px;
+    /* folga para o último card também encostar no início do track,
+       assim as setas (fixas) sempre ficam alinhadas com o card visível */
+    padding-right: calc(100cqw + 20px - var(--card-w));
   }
 
+  .testimonials-track,
   .testimonial,
   .carousel-arrow {
     --card-w: min(calc(100cqw - 32px), 480px);
