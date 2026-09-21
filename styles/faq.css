@@ -3,7 +3,7 @@
   padding-inline: 20px;
 
   background:
-    url('../assets/images/faq-background.png') center / cover no-repeat,
+    url('../assets/images/faq-background.webp') center / cover no-repeat,
     var(--natural-black);
 }
 

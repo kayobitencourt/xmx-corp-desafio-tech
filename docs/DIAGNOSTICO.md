@@ -177,7 +177,7 @@ O CTA de compra do card **"6 BOTTLES · MOST POPULAR"** não leva à oferta. O e
 
 **Evidência — card principal e CTA de compra:**
 
-![Card de 6 garrafas com o botão visual BUY NOW e total incorreto de $150](img/erro-02-cta-kit-option.png)
+![Card de 6 garrafas com o botão visual BUY NOW e total incorreto de $150](img/erro-02-cta-kit-option.webp)
 
 A captura identifica o card afetado; a ausência de `href` é uma constatação do HTML, não algo demonstrável apenas pela imagem. O botão da captura exibe **"BUY NOW"**; "Add To Cart" é a referência usada para esse CTA no diagnóstico.
 
@@ -216,7 +216,7 @@ Ocorre em **todos os dispositivos e todas as larguras**. Não é condicional: é
 
 **Evidência — seção "Sobre" em 1344px:**
 
-![Seção Sobre com o parágrafo descritivo praticamente invisível sobre o fundo escuro](img/erro-01-contraste.png)
+![Seção Sobre com o parágrafo descritivo praticamente invisível sobre o fundo escuro](img/erro-01-contraste.webp)
 
 ### 2. Onde está
 
@@ -261,7 +261,7 @@ a página está quebrada.
 
 **Evidência — FAQ no estado em que permanece após os cliques:**
 
-![Bloco de FAQ com todas as perguntas fechadas e setas indicando expansão, sem resposta ao clique](img/erro-04-faq.png)
+![Bloco de FAQ com todas as perguntas fechadas e setas indicando expansão, sem resposta ao clique](img/erro-04-faq.webp)
 
 ### 2. Onde está
 
@@ -361,7 +361,7 @@ que não será usado se apaga — o histórico do Git guarda a versão anterior.
 
 A imagem principal do produto desaparece no hero em telas pequenas.
 
-![Imagem do produto ausente no hero mobile](img/produto-mobile.png)
+![Imagem do produto ausente no hero mobile](img/produto-mobile.webp)
 
 ### 2. Onde está
 
@@ -398,7 +398,7 @@ O produto deixa de aparecer na primeira dobra em celulares, prejudicando sua apr
 
 Os cards da seção de ofertas ultrapassam a largura disponível, causando transbordamento horizontal.
 
-![Seção de ofertas com transbordamento na faixa de 900px](img/order-alpha-rock-900px.png)
+![Seção de ofertas com transbordamento na faixa de 900px](img/order-alpha-rock-900px.webp)
 
 ### 2. Onde está
 
@@ -455,7 +455,7 @@ O transbordamento afeta a seção de compra e dificulta visualizar os pacotes co
 
 Na seção **"100% SATISFACTION GUARANTEED"**, o link de contato aponta para `contact.hmtl`, com a extensão digitada incorretamente. O acesso resulta em página não encontrada.
 
-![Seção de garantia com o link de contato afetado](img/erro-07-contato.png)
+![Seção de garantia com o link de contato afetado](img/erro-07-contato.webp)
 
 ### 2. Onde está
 
@@ -528,9 +528,9 @@ Aplicar as duas correções em conjunto. Desativar a listagem não bloqueia o ac
 
 **Evidências:**
 
-![Depoimentos com conteúdo cortado em uma largura intermediária](img/b02-depoimentos-conteudo.png)
+![Depoimentos com conteúdo cortado em uma largura intermediária](img/b02-depoimentos-conteudo.webp)
 
-![Depoimentos cortados com o DevTools indicando viewport de 1152 por 768](img/b02-depoimentos-1152px.png)
+![Depoimentos cortados com o DevTools indicando viewport de 1152 por 768](img/b02-depoimentos-1152px.webp)
 
 A primeira captura mostra o corte, sem informar a largura exata. A segunda registra a viewport de 1152px, dentro da faixa afetada.
 
@@ -559,11 +559,11 @@ da seção, sem respiro.
 
 **Antes — dentro da faixa afetada:**
 
-![Seção Sobre na faixa problemática: base dos frascos cortada e botão ORDER NOW encostado no limite](img/erro-02-antes.png)
+![Seção Sobre na faixa problemática: base dos frascos cortada e botão ORDER NOW encostado no limite](img/erro-02-antes.webp)
 
 **Depois — com a correção aplicada:**
 
-![Mesma seção após a correção: frascos completos apoiados na base e botão com respiro inferior](img/erro-02-depois.png)
+![Mesma seção após a correção: frascos completos apoiados na base e botão com respiro inferior](img/erro-02-depois.webp)
 
 **Onde está.** `.sobre .container` e `.sobre .container .content`
 

@@ -4,7 +4,7 @@
   overflow: hidden;
 
   background:
-    url('../assets/images/about-background.png') left top / auto no-repeat,
+    url('../assets/images/about-background.webp') left top / auto no-repeat,
     var(--gray-light);
   background-blend-mode: luminosity;
 }

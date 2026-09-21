@@ -96,7 +96,7 @@
   overflow: hidden;
 
   background:
-    url('../assets/images/home-background.png') center top / cover no-repeat,
+    url('../assets/images/home-background.webp') center top / cover no-repeat,
     var(--natural-black);
 }
 
@@ -208,7 +208,7 @@
   width: 81.4%;
   aspect-ratio: 1;
 
-  background: url('../assets/images/product-bottle.png') center / contain
+  background: url('../assets/images/product-bottle.webp') center / contain
     no-repeat;
   filter: blur(3.75px);
   rotate: 9.84deg;
@@ -450,7 +450,7 @@
     --hero-pad: 20px;
 
     padding-bottom: 160px;
-    background-image: url('../assets/images/hero-background-mobile.png');
+    background-image: url('../assets/images/hero-background-mobile.webp');
   }
 
   .hero-wrapper {

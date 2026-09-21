@@ -5,7 +5,7 @@
   padding-inline: 20px;
 
   background:
-    url('../assets/images/beneficios-background.png') center top / cover
+    url('../assets/images/beneficios-background.webp') center top / cover
       no-repeat,
     var(--natural-black);
 }
@@ -163,7 +163,7 @@
 @media (max-width: 1100px) {
   .benefits {
     min-height: 0;
-    background-image: url('../assets/images/beneficios-background-mobile.png');
+    background-image: url('../assets/images/beneficios-background-mobile.webp');
   }
 
   .benefits-wrapper {
