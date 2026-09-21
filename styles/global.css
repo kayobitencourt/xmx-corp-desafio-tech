@@ -1,0 +1,41 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+
+body {
+  background: red;
+}
+
+:root {
+  /* colors */
+  --primary: #cc494a;
+  --secondary: #a93f48;
+  --primary-dark: #44000c;
+  --natural-black: #150005;
+  --brand-primary-dark: #8a3e2d;
+  --gray-dark: #665f5e;
+  --green-border-dark: #116800;
+  --red-primary: #ff2d2d;
+  --red-border: #ff1f1f;
+  --white: #ffffff;
+
+  /* gradients */
+  --gradient-green: linear-gradient(180deg, #35f60f 0%, #1fa604 100%);
+
+  /* values */
+  -padding-small: 12px;
+  --padding-default: 80px;
+  --padding-xl: 120px;
+  --container-width: 1260px;
+  --container-padding-width: 20px;
+}
