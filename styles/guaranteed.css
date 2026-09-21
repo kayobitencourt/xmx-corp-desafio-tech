@@ -1,0 +1,116 @@
+.guaranteed {
+  padding-block: 52px 124px;
+  padding-inline: 20px;
+  background: var(--white);
+}
+
+.guaranteed-wrapper {
+  max-width: 1208px;
+  margin: 0 auto;
+  padding: var(--padding-default);
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--padding-default);
+  overflow: hidden;
+
+  border: 1px solid rgba(193, 18, 31, 0.2);
+  border-radius: 30px;
+  background: #f4f4f4;
+
+  .seal {
+    flex-shrink: 0;
+    width: 298px;
+    height: 298px;
+    filter: drop-shadow(4px 4px 22px rgba(40, 39, 39, 0.4));
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+    max-width: 589px;
+
+    .text {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      h2 {
+        color: var(--natural-black);
+        font-family: 'Montserrat';
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: var(--line-heigh-heading);
+        text-transform: uppercase;
+      }
+
+      p {
+        color: var(--gray-dark);
+        font-family: 'Montserrat';
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .guaranteed-wrapper {
+    padding: var(--padding-medium);
+    gap: var(--padding-medium);
+  }
+}
+
+@media (max-width: 768px) {
+  .guaranteed {
+    padding-inline: 90px;
+    padding-block: 88px 102px;
+  }
+
+  .guaranteed-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 40px var(--padding-large) 64px;
+
+    .seal {
+      width: 218px;
+      height: 218px;
+      filter: drop-shadow(2.9px 2.9px 16.1px rgba(40, 39, 39, 0.4));
+    }
+
+    .content {
+      width: 100%;
+      max-width: none;
+
+      .text h2 {
+        color: var(--primary-dark);
+        font-size: 32px;
+      }
+
+      .text p {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: var(--line-heigh-heading);
+      }
+    }
+
+    .cta-button {
+      width: 100%;
+      padding-inline: var(--padding-large);
+    }
+  }
+}
+
+@media (max-width: 460px) {
+  .guaranteed {
+    padding-inline: 20px;
+    padding-block: 40px;
+  }
+}
