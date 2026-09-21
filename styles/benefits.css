@@ -1,0 +1,186 @@
+.benefits {
+  position: relative;
+  min-height: 824px;
+  padding-top: 88px;
+  padding-inline: 20px;
+
+  background:
+    url('../assets/images/beneficios-background.png') center top / cover
+      no-repeat,
+    var(--natural-black);
+}
+
+.benefits-divider {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  translate: -50% 0;
+  width: 1920px;
+  max-width: none;
+  pointer-events: none;
+}
+
+.benefits-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1171px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 120px;
+}
+
+.benefits-header {
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+
+  h2 {
+    color: var(--white);
+    font-family: 'Montserrat';
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: var(--line-heigh-heading);
+  }
+}
+
+.benefits-eyebrow {
+  color: #cecece;
+  font-family: 'Montserrat';
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 1.44px;
+  text-transform: uppercase;
+}
+
+/* ---------- beneficios ---------- */
+
+.benefits-columns {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.benefits-list {
+  flex: 0 1 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.benefit {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 24px;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  background: rgba(108, 45, 57, 0.2);
+  backdrop-filter: blur(8px);
+
+  p {
+    color: var(--white);
+    font-family: 'Inter';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 26px;
+  }
+}
+
+.benefit-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+  background: var(--red-primary);
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* ---------- produto ---------- */
+
+.benefits-product {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  translate: -50% 0;
+  width: 608px;
+  height: auto;
+  pointer-events: none;
+}
+
+.benefits + .banner {
+  position: relative;
+  z-index: 1;
+  margin-top: -60px;
+}
+
+@media (max-width: 1100px) {
+  .benefits {
+    min-height: 0;
+    background-image: url('../assets/images/beneficios-background-mobile.png');
+  }
+
+  .benefits-wrapper {
+    gap: 48px;
+  }
+
+  .benefits-columns {
+    max-width: 400px;
+    flex-direction: column;
+  }
+
+  .benefits-list {
+    flex-basis: auto;
+  }
+
+  .benefits-product {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    translate: none;
+    display: block;
+    width: 100%;
+    max-width: 489px;
+    margin: 56px auto 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .benefits {
+    padding-inline: 90px;
+  }
+
+  .benefits-header h2 {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 460px) {
+  .benefits {
+    padding-inline: 20px;
+    padding-top: 64px;
+  }
+
+  .benefit p {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}

@@ -1,4 +1,6 @@
 .ingredients {
+  position: relative;
+  z-index: 1;
   padding-block: var(--padding-default);
   padding-inline: 20px;
 
