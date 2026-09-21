@@ -1,0 +1,44 @@
+.banner {
+  max-width: 100%;
+  overflow: hidden;
+
+  .scroller {
+    padding-block: 16px;
+    background: var(--red-primary);
+    color: var(--white);
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 130%;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .rolling {
+    display: flex;
+    width: max-content;
+    list-style: none;
+
+    animation: scroll-infinite 60s linear infinite;
+
+    li {
+      flex-shrink: 0;
+    }
+
+    li::before {
+      content: '•';
+      margin-inline: 12px;
+    }
+  }
+}
+
+@keyframes scroll-infinite {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
