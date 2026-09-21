@@ -2,7 +2,11 @@ const prefersReducedMotion = window.matchMedia(
   '(prefers-reduced-motion: reduce)',
 );
 
-function initCarousel(carousel) {
+function initCarousel() {
+  const carousel = document.querySelector('[data-carousel]');
+
+  if (!carousel) return;
+
   const track = carousel.querySelector('[data-carousel-track]');
   const prev = carousel.querySelector('[data-carousel-prev]');
   const next = carousel.querySelector('[data-carousel-next]');
@@ -35,4 +39,4 @@ function initCarousel(carousel) {
   });
 }
 
-document.querySelectorAll('[data-carousel]').forEach(initCarousel);
+initCarousel();
