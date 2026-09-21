@@ -12,6 +12,11 @@ body {
 
 a {
   text-decoration: none;
+  color: var(--white);
+}
+
+li {
+  list-style: none;
 }
 
 :root {
@@ -34,6 +39,7 @@ a {
   /* values */
   --line-heigh-heading: 130%;
   --padding-small: 12px;
+  --padding-large: 24px;
   --padding-medium: 48px;
   --padding-default: 80px;
   --padding-xl: 120px;
