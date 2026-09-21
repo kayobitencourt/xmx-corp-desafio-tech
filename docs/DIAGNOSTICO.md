@@ -13,7 +13,7 @@ por fornecedor externo e está no ar em produção. O cliente relatou "vários p
 detalhar quais.
 
 O desafio indica **7 erros principais**. Encontrei **19 problemas**. Este documento apresenta
-os 7 que considero principais, seguidos dos demais em seções de bônus.
+os 7 que considero principais, seguidos de 8 itens de bônus e 4 observações de produto.
 
 ---
 
@@ -24,10 +24,10 @@ os 7 que considero principais, seguidos dos demais em seções de bônus.
 | **Larguras testadas**     | 360px, 414px, 768px, 1024px, 1440px, 1920px — e **redimensionamento contínuo** de 320px a 1920px       |
 | **Faixas intermediárias** | Varredura manual entre breakpoints — é onde a maioria dos erros desta página aparece                   |
 | **Ferramentas**           | DevTools (Elements / Computed / Console / Network), emulação de dispositivo e teste em aparelho físico |
-| **Testes de estado**      | Reload, troca de aba, scroll completo, interação com todos os elementos clicáveis                      |
+| **Testes de estado**      | Reload, scroll completo, interação com todos os elementos clicáveis                      |
 | **Fonte**                 | Leitura do HTML servido e conferência da aritmética das ofertas                                        |
 
-**Evidências:** as capturas estão em `docs/img/`, nomeadas por número do erro.
+**Evidências:** as capturas estão em `img/`, relativas a este documento. Os seletores, causas e correções dos itens revisados seguem os trechos fornecidos pelo autor. B01 usa o PDF AUD-2026-005 como base. Esta revisão documental não executa nem confirma correções no site em produção.
 
 > **Nota sobre a varredura contínua:** vários erros desta página **não aparecem** nas larguras
 > padrão de teste. Eles só se manifestam em faixas intermediárias — 1260–900px, 1130–900px.
@@ -58,22 +58,23 @@ o problema mais sério que encontrei no projeto inteiro.
 | #   | Erro                                                 | Natureza            | Gravidade  |
 | --- | ---------------------------------------------------- | ------------------- | ---------- |
 | 01  | Total do card principal exibe $150 em vez de $294    | Funcional / Negócio | 🔴 Crítico |
-| 02  | CTA do card principal é imagem sem link — não clica  | Funcional           | 🔴 Crítico |
+| 02  | CTA do card principal: `.kit-option a` sem `href`  | Funcional           | 🔴 Crítico |
 | 03  | Texto sem contraste na seção "Sobre"                 | Visual / A11y       | 🔴 Crítico |
 | 04  | FAQ não abre                                         | Funcional           | 🔴 Crítico |
 | 05  | Imagem do produto some no mobile (hero)              | Responsividade      | 🔴 Crítico |
 | 06  | Seção "Order Your Alpha Rock" com overflow até 900px | Responsividade      | 🔴 Crítico |
-| 07  | Marquee re-renderiza ao trocar de aba                | Condicional         | 🟡 Médio   |
+| 07  | Link da página de contato aponta para `.hmtl` | Funcional | 🟡 Médio |
 
 ### Bônus — problemas adicionais
 
+Os identificadores restantes foram preservados; o antigo B05 passou a ser o Erro 07.
+
 | #   | Erro                                                 | Natureza         | Gravidade  |
 | --- | ---------------------------------------------------- | ---------------- | ---------- |
-| B01 | `.git` exposto e directory listing ativo             | **Segurança**    | 🔴 Crítico |
+| B01 | `.git` exposto e listagem de diretórios ativa | Segurança | 🔴 Alta / 🟡 Média |
 | B02 | Cards de depoimento cortam o texto (900–1260px)      | Responsividade   | 🟡 Médio   |
 | B03 | Imagem cortada e CTA colado na base (900–1130px)     | Responsividade   | 🟡 Médio   |
 | B04 | Identidade do site incoerente (title / OG / domínio) | Meta / SEO       | 🟡 Médio   |
-| B05 | Link da página de contato aponta para `.hmtl`        | Funcional        | 🟡 Médio   |
 | B06 | HTML sem semântica                                   | Estrutura / A11y | 🟡 Médio   |
 | B07 | Todas as imagens com o mesmo `alt`                   | A11y             | 🟡 Médio   |
 | B08 | CSS duplicado inúmeras vezes                         | Manutenção       | 🟢 Baixo   |
@@ -168,56 +169,37 @@ consumidor que vai além do front-end — e a correção do texto sozinha não r
 
 ---
 
-## Erro 02 — CTA do card principal é uma imagem sem link
+## Erro 02 — CTA do card principal: `<a>` sem `href` em `.kit-option`
 
 ### 1. O que está errado
 
-O botão **"Add To Cart"** do card de 6 garrafas não funciona. O usuário clica e nada acontece:
-sem navegação, sem feedback, sem cursor de link (embora haja uma imagem de cursor decorativa
-desenhada sobre o botão, o que torna o engano ainda mais convincente).
+O CTA de compra do card **"6 BOTTLES · MOST POPULAR"** não leva à oferta. O elemento `<a>` em `.kit-option` está sem `href`.
 
-Os outros dois cards funcionam normalmente — o de 2 garrafas leva para `/linkoffer` e o de 3
-para `/linkoffer3`. Apenas o card recomendado, o de maior ticket, não leva a lugar nenhum.
+**Evidência — card principal e CTA de compra:**
+
+![Card de 6 garrafas com o botão visual BUY NOW e total incorreto de $150](img/erro-02-cta-kit-option.png)
+
+A captura identifica o card afetado; a ausência de `href` é uma constatação do HTML, não algo demonstrável apenas pela imagem. O botão da captura exibe **"BUY NOW"**; "Add To Cart" é a referência usada para esse CTA no diagnóstico.
 
 ### 2. Onde está
 
-- **Seção:** `#kits` — card de 6 garrafas
-- **Elemento:** `<img src="assets/img/button.webp" alt="Add To Cart">`
-- **Escopo:** todas as larguras, todos os dispositivos
+- **Seção:** `#kits` — card de 6 garrafas.
+- **Elemento:** `.kit-option a` do card principal, sem atributo `href`.
+- **Escopo:** todas as larguras e dispositivos.
 
 ### 3. Por que acontece
 
-Nos cards de 2 e 3 garrafas, o card inteiro é um elemento âncora — o bloco todo é clicável e
-aponta para a URL da oferta.
+O `<a>` já existe na estrutura de `.kit-option`, mas não tem destino definido. A falha está nesse elemento, não na imagem do botão. Sem `href`, ele não funciona como link de navegação para a oferta.
 
-No card de 6 garrafas isso não existe. O CTA foi construído como **imagem estática** (o botão
-inteiro é um `.webp`, com o texto "Add To Cart" dentro do arquivo de imagem) e essa imagem
-**não está envolvida por nenhum `<a>`**. Não há âncora, não há `<button>`, não há handler de
-clique. É uma figura de um botão, não um botão.
-
-**Causa raiz:** o CTA foi tratado como elemento visual em vez de elemento de interface. Um
-botão desenhado como imagem não avisa quando o link é esquecido — ele continua parecendo
-perfeito. Se fosse um `<a>` sem `href`, o navegador já sinalizaria a ausência pelo cursor; como
-é uma `<img>`, nada denuncia o problema visualmente.
-
-Isso também explica por que o erro sobreviveu à entrega: **a página parece certa.** Só quem
-clica descobre.
+Os outros cards possuem destinos (`/linkoffer` e `/linkoffer3`), mas isso não comprova que funcionem: o PDF de auditoria registra retorno 404 para esses caminhos (p. 7, R2).
 
 ### 4. Como você corrigiria
 
-Adicionar o `href` com o link correto da oferta de 6 garrafas no CTA do card.
+Adicionar ao `<a>` existente em `.kit-option` o `href` com a URL correta da oferta de 6 garrafas. Manter a estrutura e a imagem do CTA. A URL final da oferta não foi fornecida e não deve ser inventada.
 
 ### 5. Gravidade: 🔴 **Crítico**
 
-1. **Zera a conversão da oferta de maior ticket.** Todo usuário que escolheu o pacote
-   recomendado — o de maior receita por venda — bate num botão morto.
-2. **Falha silenciosa.** Não gera erro no console, não quebra o layout, não aparece em
-   screenshot. Só aparece clicando.
-3. **Perde o usuário mais qualificado.** Quem clica em "Add To Cart" já decidiu comprar. É o
-   ponto mais caro possível para falhar.
-
-Junto com o Erro 01, os dois atingem o **mesmo card**: o principal está com preço errado e
-botão que não clica.
+Impede a navegação para compra no pacote recomendado. Junto com o Erro 01, atinge o mesmo card: preço total incorreto e CTA sem destino.
 
 ---
 
@@ -244,37 +226,17 @@ Ocorre em **todos os dispositivos e todas as larguras**. Não é condicional: é
 
 ### 3. Por que acontece
 
-A regra aplicada a `.sobre .container .content p` define uma cor de texto escura, próxima do
-tom do próprio fundo. A seção usa fundo escuro (gradiente preto/marrom), então o resultado é
-uma razão de contraste muito abaixo do mínimo legível.
-
-O padrão aponta para **ausência de token de cor por contexto de fundo**: as cores são
-declaradas elemento a elemento, em hardcode, sem variável. Um componente de texto pensado para
-seção clara foi reaproveitado em seção escura e manteve a cor original.
-
-> **Verificação:** conferir no Computed o valor resolvido de `color` e o `background` efetivo,
-> registrando a razão real (o mínimo WCAG 2.1 AA é `4.5:1` para texto de corpo).
+A cor aplicada a `.sobre .container .content p` é escura sobre o fundo escuro da seção, tornando os parágrafos praticamente ilegíveis.
 
 ### 4. Como você corrigiria
 
+Alterar apenas a cor para `#cfcfcf`, como no restante do site:
+
 ```css
-:root {
-  --text-on-dark: #e6e6e6;
-  --text-on-light: #1a1a1a;
-}
-
-.sobre {
-  --text-color: var(--text-on-dark);
-}
-
 .sobre .container .content p {
-  color: var(--text-color);
+  color: #cfcfcf;
 }
 ```
-
-A cor do texto passa a ser função do **contexto da seção**, não de uma declaração isolada.
-Qualquer componente movido para dentro de `.sobre` herda a cor correta automaticamente — que é
-exatamente a falha que produziu este bug.
 
 ### 5. Gravidade: 🔴 **Crítico**
 
@@ -397,241 +359,119 @@ que não será usado se apaga — o histórico do Git guarda a versão anterior.
 
 ### 1. O que está errado
 
-No hero — **"Built for Men Who Want to Feel Like Themselves Again"** — a imagem do produto não
-aparece em telas pequenas. O usuário abre a página no celular e vê título, texto, lista de
-benefícios e CTA, mas **não vê o produto**.
+A imagem principal do produto desaparece no hero em telas pequenas.
+
+![Imagem do produto ausente no hero mobile](img/produto-mobile.png)
 
 ### 2. Onde está
 
-- **Seção:** hero (primeira dobra)
-- **Elemento:** imagem principal do produto (`product_main_1.png`), posicionada com
-  `position: absolute`
-- **Escopo:** larguras de mobile
+- **Seletor:** `main .container .area-img .main_product`.
+- **Breakpoint:** `@media (max-width: 420px)`.
 
 ### 3. Por que acontece
 
-A imagem está com `position: absolute`, posicionada por coordenadas calculadas para o layout
-de desktop. Elemento absoluto **sai do fluxo do documento**: não ocupa espaço, não empurra
-nada, não participa do cálculo de altura do contêiner pai.
-
-No desktop isso funciona porque as coordenadas foram ajustadas para aquela largura. No mobile,
-o layout muda para coluna única, o contêiner encolhe, e a imagem — que continua posicionada por
-coordenadas fixas — acaba fora da área visível: seja além do limite do contêiner recortado por
-`overflow: hidden`, seja projetada para uma região que não existe mais naquele layout.
-
-**Causa raiz:** posicionamento absoluto usado como ferramenta de composição, sem alternativa
-declarada para o layout mobile. É a técnica que mais falha em responsividade justamente porque,
-estando fora do fluxo, o elemento não é reposicionado pelo redimensionamento — ele só permanece
-onde foi cravado, mesmo quando o entorno mudou completamente.
+A declaração `position: absolute !important` retira a imagem do fluxo. Sem a imagem contribuindo para o tamanho do contêiner, ele fica com tamanho zero e o produto desaparece. A causa deste erro é o colapso do contêiner provocado pelo posicionamento absoluto, não `overflow: hidden`.
 
 ### 4. Como você corrigiria
 
-Devolver a imagem ao fluxo no mobile:
+Remover a declaração `position: absolute !important` desse seletor no breakpoint de 420px. O trecho enviado mostra essa linha já comentada:
 
 ```css
-@media (max-width: 768px) {
-  .hero__image {
-    position: static;
-    width: 100%;
-    max-width: 420px;
-    margin: 0 auto;
-    inset: auto; /* zera top/right/bottom/left herdados */
+@media (max-width: 420px) {
+  main .container .area-img .main_product {
+    /* position: absolute !important; */
   }
+}
+```
 
-  .hero__container {
+Se a regra ficar vazia, remover esse bloco. Preservar eventuais outras regras do mesmo `@media`. Não é necessário criar seletores ou reconstruir o hero.
+
+### 5. Gravidade: 🔴 **Crítico**
+
+O produto deixa de aparecer na primeira dobra em celulares, prejudicando sua apresentação logo na entrada da página.
+
+---
+
+## Erro 06 — Seção "Order Your Alpha Rock" com overflow até 900px
+
+### 1. O que está errado
+
+Os cards da seção de ofertas ultrapassam a largura disponível, causando transbordamento horizontal.
+
+![Seção de ofertas com transbordamento na faixa de 900px](img/order-alpha-rock-900px.png)
+
+### 2. Onde está
+
+- **Seção:** `.area-kits`.
+- **Seletor:** `.area-kits .container`.
+- **Breakpoint:** `@media (max-width: 900px)`.
+
+### 3. Por que acontece
+
+O contêiner recebe `width: 110%`, ficando maior que a largura disponível, junto de `max-width: 1000px`:
+
+```css
+@media (max-width: 900px) {
+  .area-kits .container {
+    width: 110%;
+    max-width: 1000px;
+  }
+}
+```
+
+### 4. Como você corrigiria
+
+Remover `width: 110%` da regra existente e alterar `max-width` para `800px`:
+
+```css
+@media (max-width: 900px) {
+  .area-kits .container {
+    max-width: 800px;
+  }
+}
+```
+
+A alteração deve ser feita na regra original: apenas adicionar outra regra sem remover `width: 110%` não elimina essa declaração.
+
+**Ressalva visual:** eu também adicionaria um breakpoint em `560px`, com `display: flex` em `.area-kits .container ul .best-option a`. A estrutura fica melhor visualmente nessa faixa:
+
+```css
+@media (max-width: 560px) {
+  .area-kits .container ul .best-option a {
     display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 }
-```
-
-**Correção estrutural:** reconstruir o hero com Grid, com a imagem como item de grade em vez de
-elemento absoluto. Assim a composição de desktop é obtida por posicionamento em células, e o
-mobile vira uma redefinição de `grid-template-areas` — sem coordenadas cravadas e sem elemento
-fora do fluxo.
-
-Vale confirmar se as imagens decorativas do hero (pílulas, folhas) sofrem do mesmo problema —
-pela estrutura, provavelmente compartilham a técnica. Essas podem legitimamente ser ocultadas
-no mobile; a do produto, não.
-
-### 5. Gravidade: 🔴 **Crítico**
-
-1. **Mobile é a maior fatia de tráfego** em funil de venda. Não é cenário de borda.
-2. **O produto some da primeira dobra.** O usuário chega numa página que vende um suplemento e
-   não vê o frasco. O elemento de reconhecimento mais importante da página está ausente
-   exatamente onde mais gente entra.
-3. **O desafio é explícito neste ponto:** quebra em dispositivos móveis conta contra.
-
----
-
-## Erro 06 — Seção "Order Your Alpha Rock" quebra com overflow até 900px
-
-### 1. O que está errado
-
-A seção de ofertas — **"Order Your Alpha Rock"**, a tabela de preços com os três pacotes —
-quebra em larguras até aproximadamente **900px**. Os cards estouram o contêiner, o layout
-desmonta e a página ganha **scroll horizontal**.
-
-O usuário precisa arrastar a página lateralmente para ver os cards inteiros, e parte do
-conteúdo fica fora da área visível.
-
-### 2. Onde está
-
-- **Seção:** `#kits` — "Order Your Alpha Rock"
-- **Escopo:** até ~900px
-
-### 3. Por que acontece
-
-Os três cards estão em disposição horizontal com dimensões que não cedem: largura fixa ou
-`min-width` grande o bastante para que a soma dos três, mais os espaçamentos, ultrapasse a
-largura disponível.
-
-Sem `flex-wrap` (ou com Grid de colunas fixas), não existe instrução de quebra — os itens
-simplesmente continuam lado a lado e empurram o limite do contêiner. Como a seção não tem
-contenção de overflow no eixo horizontal, o estouro se propaga para o `<body>` e vira barra de
-rolagem da página inteira.
-
-**Causa raiz:** layout horizontal construído com medidas absolutas em vez de medidas que se
-adaptam. O card não tem permissão para encolher nem para quebrar linha — só para estourar.
-
-**Observação:** o scroll horizontal aqui não é apenas incômodo local. Ele afeta a **página
-toda**, inclusive as seções que estão corretas.
-
-### 4. Como você corrigiria
-
-```css
-.kits__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-}
-```
-
-`auto-fit` com `minmax` resolve os três cenários com uma regra: três colunas quando cabe, duas
-quando não cabe, uma no mobile — sem breakpoint manual para cada transição.
-
-**Ordem no mobile:** com coluna única, os cards empilham na ordem do HTML — 2, 6, 3 garrafas.
-O pacote recomendado ficaria no meio. Eu colocaria o de 6 em primeiro no mobile, por ser a
-oferta que a página promove:
-
-```css
-@media (max-width: 768px) {
-  .kit--popular {
-    order: -1;
-  }
-}
-```
-
-**Diagnóstico do scroll horizontal:** vale rodar a varredura abaixo para confirmar que esta
-seção é a única culpada:
-
-```js
-document.querySelectorAll('*').forEach((el) => {
-  if (el.getBoundingClientRect().right > document.documentElement.clientWidth) {
-    console.log(el);
-  }
-});
 ```
 
 ### 5. Gravidade: 🔴 **Crítico**
 
-1. **É a seção de compra.** Os três cards de oferta são o destino de todos os CTAs da página.
-   Quebrar aqui é quebrar no fim do funil.
-2. **Contamina a página inteira** com scroll horizontal, inclusive seções corretas.
-3. **A faixa afetada inclui tablets e celulares em paisagem** — tráfego real, não borda.
+O transbordamento afeta a seção de compra e dificulta visualizar os pacotes completos em telas menores.
 
 ---
 
-## Erro 07 — Marquee re-renderiza ao trocar de aba
+## Erro 07 — Link da página de contato aponta para `.hmtl`
 
 ### 1. O que está errado
 
-A faixa deslizante com os selos — **60 DAY GUARANTEE · NATURAL FORMULA · GLUTEN-FREE ·
-NON-GMO** — apresenta comportamento anômalo quando o usuário sai da aba e volta: a animação
-salta, reinicia ou acumula conteúdo, em vez de retomar o movimento contínuo de onde parou.
+Na seção **"100% SATISFACTION GUARANTEED"**, o link de contato aponta para `contact.hmtl`, com a extensão digitada incorretamente. O acesso resulta em página não encontrada.
+
+![Seção de garantia com o link de contato afetado](img/erro-07-contato.png)
 
 ### 2. Onde está
 
-- **Seção:** faixa de selos, abaixo do bloco de garantia
-- **Condição:** trocar de aba e voltar; possivelmente também ao redimensionar
+Link **"link to our Contact Page"** no texto da garantia. O rodapé já usa `contact.html`.
 
 ### 3. Por que acontece
 
-Como não executo o JS, trato isto como **hipótese**, não como confirmação. Duas causas
-prováveis, não excludentes:
-
-**A) Animação em JS afetada pela suspensão em aba oculta.**
-Se o movimento é calculado por `requestAnimationFrame` ou `setInterval`, o navegador
-**suspende ou reduz drasticamente** esses callbacks em aba em segundo plano — comportamento
-padrão, para economizar bateria. Se a posição é calculada por acumulação de quadros em vez de
-tempo decorrido, a faixa "perde" o intervalo em que ficou oculta e o movimento salta ao
-retornar.
-
-**B) Conteúdo clonado sem limpeza prévia.**
-Marquee contínuo normalmente duplica os itens para criar o loop sem emenda. No HTML servido, o
-conjunto de quatro selos aparece **repetido três vezes**. Se essa duplicação é feita em JS e
-disparada de novo em `visibilitychange` ou `resize` **sem remover os clones anteriores**, os
-itens se acumulam a cada retorno — a faixa cresce, a animação recalcula e o resultado é o
-salto visível. Nesse caso a repetição tripla no HTML pode ser o estado já acumulado no momento
-da leitura, não o estado inicial.
-
-**Como distinguir:** abrir o Elements, contar os itens da faixa, trocar de aba, voltar e contar
-de novo. **Se o número aumentou, é (B).** Se permaneceu igual, é (A).
+Erro de digitação no `href`: `.hmtl` em vez de `.html`.
 
 ### 4. Como você corrigiria
 
-A correção que eu proporia resolve os dois casos: **mover a animação para CSS**, eliminando o
-JS do problema.
-
-```css
-.marquee {
-  overflow: hidden;
-  display: flex;
-}
-
-.marquee__track {
-  display: flex;
-  gap: 32px;
-  flex-shrink: 0;
-  animation: marquee 20s linear infinite;
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .marquee__track {
-    animation: none;
-  }
-}
-```
-
-Com a duplicação **fixa no HTML** (exatamente duas cópias do conjunto) e `translateX(-50%)`, o
-loop é matematicamente contínuo.
-
-Animação CSS é gerenciada pelo compositor do navegador: pausa e retoma sozinha ao trocar de
-aba, sem acumular estado, sem cálculo por quadro e sem clonagem em tempo de execução. Some o
-listener, some o clone, some o bug.
-
-O bloco `prefers-reduced-motion` é acessibilidade básica: movimento horizontal contínuo é
-gatilho comum para desconforto vestibular.
+Trocar o destino do link para **`contact.html`**. Essa é a correção necessária.
 
 ### 5. Gravidade: 🟡 **Médio**
 
-Não é crítico: a faixa é decorativa, não bloqueia conteúdo nem compra, e o usuário que não
-troca de aba não vê o problema.
-
-Mas não é baixo. Os selos comunicam **garantia, naturalidade e certificações** — argumentos de
-confiança. Um elemento que pisca e salta transmite exatamente o oposto do que deveria
-transmitir. E, na hipótese (B), há acúmulo progressivo de nós no DOM, que degrada a página em
-sessões longas.
+Prejudica o acesso ao contato justamente no bloco de garantia. Existe um caminho alternativo no rodapé, mas o link dessa seção precisa funcionar.
 
 ---
 
@@ -639,109 +479,75 @@ sessões longas.
 
 ---
 
-## B01 — `.git` exposto e directory listing ativo 🔴 **Crítico**
+## B01 — `.git` exposto e listagem de diretórios ativa
 
-**O que está errado.** O servidor está com **listagem de diretórios ativada em todo o site** e
-o diretório **`.git` acessível publicamente**. Por ali chega-se aos metadados do repositório,
-incluindo a URL de origem — que aponta para um repositório **privado**.
+**Base:** PDF de auditoria **AUD-2026-005**, de **17/09/2026**, páginas 3, 5 e 7. Os achados abaixo reproduzem a evidência documentada nessa avaliação; não representam um novo teste do servidor.
 
-**Por que acontece.** Duas falhas de configuração somadas: (1) o deploy foi feito copiando a
-pasta de trabalho inteira para o servidor, incluindo o `.git`, em vez de publicar apenas os
-artefatos de build; (2) o servidor está com autoindex ligado e sem regra de bloqueio para
-arquivos ocultos.
+### Exposição do `.git` — V01 · 🔴 Alta
 
-**Como eu corrigiria.**
+**Evidências registradas no PDF:**
 
-1. **Remover o `.git` do servidor** — imediato.
-2. **Desativar a listagem de diretórios** (`autoindex off` no nginx; `Options -Indexes` no
-   Apache).
-3. **Bloquear arquivos ocultos** por regra explícita:
+- `/.git/HEAD` retorna `ref: refs/heads/main`.
+- `/.git/` retorna **"Index of /.git"**.
+- `/.git/config` revela o remote de um repositório identificado como privado pela auditoria e uma referência `includeIf` a arquivo de credenciais de CI.
+- `/.git/logs/HEAD` expõe commit do runner de CI e hostname interno.
 
-```nginx
-location ~ /\. { deny all; return 404; }
+**Impacto:** possibilidade de reconstrução do código e do histórico do repositório, além de exposição de informações do pipeline de deploy. O PDF esclarece que o repositório não foi reconstruído nem baixado. A referência a um arquivo de credenciais não comprova, por si só, a leitura do valor de um segredo.
+
+**Correção conforme a auditoria:** bloquear o acesso a `.git` e a arquivos ocultos no edge/origem, retirar `.git` do webroot e publicar somente os artefatos necessários ao site. O PDF recomenda também a rotação das credenciais de CI expostas.
+
+Exemplo indicado no PDF para bloquear `.git` no Apache:
+
+```apache
+RedirectMatch 404 /\.git
 ```
 
-4. **Corrigir o processo de deploy** para publicar apenas o necessário — é a causa raiz. Sem
-   isso, o `.git` volta no próximo envio.
-5. **Considerar as credenciais comprometidas.** Se houver qualquer chave, token ou senha no
-   histórico do repositório, remover o arquivo não basta: o histórico continua contendo o
-   segredo. Rotacionar.
+### Listagem de diretórios — V02 · 🟡 Média
 
-**Gravidade: Crítico.** O histórico completo de um repositório privado — que costuma conter
-chaves de API, credenciais de gateway, endpoints internos e versões anteriores de arquivos —
-pode ser reconstruído a partir de um `.git` exposto. É o problema mais sério do projeto inteiro
-e o único com potencial de dano fora da página.
+**Evidências registradas no PDF:** páginas **"Index of …"** em `/assets/`, `/assets/js/`, `/assets/css/` e `/.git/`, atribuídas ao `mod_autoindex` do Apache na origem, atrás do Cloudflare.
 
-> **Duas notas de conduta, e elas importam:**
->
-> **1.** Documentei a existência da falha, mas **não explorei o conteúdo** do repositório. A
-> diferença entre reportar uma porta destrancada e entrar pela porta é exatamente a diferença
-> entre auditoria e invasão.
->
-> **2. Não incluí neste documento a URL do repositório privado encontrado.** Esta entrega vai
-> para um repositório **público** no GitHub. Publicar aqui o endereço de um repositório privado
-> de terceiro seria transformar um vazamento em divulgação ampla — e com o meu nome assinado
-> embaixo. A URL deve ser comunicada **em canal privado**, direto ao responsável. Sugiro fazer
-> o mesmo na sua entrega.
+**Impacto:** enumeração dos arquivos servidos, facilitando a descoberta de backups, fontes e assets não referenciados.
+
+**Correção conforme a auditoria:** desativar a indexação automática no Apache:
+
+```apache
+Options -Indexes
+```
+
+Aplicar as duas correções em conjunto. Desativar a listagem não bloqueia o acesso direto aos arquivos do `.git`; é necessário bloquear esse diretório e excluí-lo do deploy.
+
+**Classificação:** Alta para V01 e Média para V02, conforme o PDF. A exposição do repositório é o achado de segurança mais grave do documento.
 
 ---
 
 ## B02 — Cards de depoimento cortam o texto (900–1260px) 🟡 **Médio**
 
-**O que está errado.** No carrossel **"Real Life Changing Results"**, os depoimentos aparecem
-truncados entre ~1260px e ~900px. O texto é cortado no meio — sem reticências, sem "ler mais",
-sem indicação de que há continuação. A frase simplesmente termina no nada.
+**O que está errado.** Na seção **"Real Life Changing Results"**, os textos dos depoimentos ficam cortados na faixa de 900–1260px. O breakpoint informado está correto; o ajuste deve ser no conteúdo dos cards.
 
-**Onde está.** `.testemonial-card`
+**Onde está.** Seção `.testemonials`, especificamente `.testemonials .testemonial-card .content`.
 
-**Por que acontece.** O card tem **altura fixa** combinada com `overflow: hidden`. Nessa faixa
-de largura o card estreita, o texto do depoimento reflui e ganha linhas, ultrapassando a altura
-reservada — e o excedente é recortado.
+**Evidências:**
 
-`overflow: hidden` aqui provavelmente foi adicionado para conter outro problema (arredondamento
-de bordas ou vazamento de imagem). O efeito colateral é que ele silencia o transbordo em vez de
-resolvê-lo: o conteúdo não some, fica escondido.
+![Depoimentos com conteúdo cortado em uma largura intermediária](img/b02-depoimentos-conteudo.png)
 
-**Causa raiz:** altura fixa em componente de conteúdo variável. Depoimentos têm comprimentos
-diferentes por natureza — o do Richard P. é quase o triplo do Robert M. Reservar altura fixa
-para conteúdo que varia garante que ou sobra espaço, ou falta.
+![Depoimentos cortados com o DevTools indicando viewport de 1152 por 768](img/b02-depoimentos-1152px.png)
 
-**Como eu corrigiria.**
+A primeira captura mostra o corte, sem informar a largura exata. A segunda registra a viewport de 1152px, dentro da faixa afetada.
+
+**Por que acontece.** O texto ocupa mais espaço vertical conforme o card estreita e não fica integralmente acessível na área de conteúdo disponível.
+
+**Como eu corrigiria.** Na faixa afetada, adicionar rolagem vertical na área de conteúdo e alinhar o conteúdo ao início:
 
 ```css
-.testemonial-card {
-  min-height: 320px; /* em vez de height fixo */
-  height: auto;
+.testemonials .testemonial-card .content {
+  overflow-y: scroll;
+  justify-content: start;
 }
 ```
 
-Se a uniformidade visual dos cards for requisito de design, a solução correta é igualar as
-alturas **pela grade**, não por valor cravado:
+Aplicar essas declarações no breakpoint correspondente já existente, preservando a estrutura dos cards. A rolagem permite acessar o restante do texto; `justify-content: start` mantém o início do conteúdo alinhado ao topo.
 
-```css
-.testemonials__grid {
-  display: grid;
-  grid-auto-rows: 1fr; /* todas as linhas com a altura do maior item */
-}
-```
-
-Se o truncamento for realmente desejado, ele precisa ser **intencional e visível**:
-
-```css
-.testemonial-card__text {
-  display: -webkit-box;
-  -webkit-line-clamp: 6;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-```
-
-Com `line-clamp` há reticências — o usuário ao menos sabe que o texto continua. O corte atual
-não avisa nada.
-
-**Gravidade: Médio.** Prova social é dos elementos de maior peso na conversão desta página
-(seis depoimentos, selo de 4.9). Depoimento cortado no meio da frase perde a força persuasiva e
-transmite descuido. Não é crítico porque é condicional e não bloqueia a compra.
+**Gravidade: Médio.** O corte prejudica a leitura da prova social em larguras intermediárias, mas não bloqueia diretamente a compra.
 
 ---
 
@@ -834,35 +640,13 @@ página de venda que circula por link, a pré-visualização é a primeira impre
 
 ---
 
-## B05 — Link da página de contato aponta para `.hmtl` 🟡 **Médio**
-
-**O que está errado.** Na seção **"100% SATISFACTION GUARANTEED"**, o link "contact us through
-this link" aponta para `https://biogutex.com/contact.hmtl` — extensão trocada (`.hmtl` em vez
-de `.html`). O usuário recebe 404.
-
-O rodapé, no mesmo site, aponta corretamente para `contact.html`.
-
-**Por que acontece.** Erro de digitação em URL escrita à mão. Passou despercebido porque **link
-quebrado não gera erro no console** — só falha quando alguém clica. E o link correto existir no
-rodapé mascarou o problema em qualquer teste superficial.
-
-**Como eu corrigiria.** Corrigir para `contact.html` e rodar um verificador de links no site
-inteiro antes de publicar (`linkinator`, `lychee` ou equivalente) — o tipo de erro que nenhuma
-revisão visual pega e que qualquer automação pega.
-
-**Gravidade: Médio.** Está no bloco de garantia, ou seja: exatamente no caminho de quem quer
-acionar o reembolso ou tirar dúvida antes de comprar. Cliente que não consegue contato é
-reclamação em outro canal. Não é crítico porque o rodapé oferece caminho alternativo funcional.
-
----
-
 ## B06 — HTML sem semântica 🟡 **Médio**
 
 **O que está errado.** A página é construída essencialmente com `<div>` e `<span>`, sem os
 elementos estruturais que descrevem o documento: `<header>`, `<main>`, `<nav>`, `<section>`,
 `<article>`, `<footer>`.
 
-Somam-se a isso: botões que não são `<button>` nem `<a>` (o CTA do Erro 02 é uma `<img>`),
+Somam-se a isso: um `<a>` sem `href` no CTA do Erro 02,
 acordeão sem `<details>` (Erro 04), e hierarquia de headings inconsistente — há `<h1>` em mais
 de uma seção do documento.
 
@@ -876,9 +660,7 @@ navegação em `<nav>`, um único `<h1>` (o título do hero) com a hierarquia de
 
 **Gravidade: Médio.** Não quebra a renderização, mas: leitores de tela perdem a capacidade de
 navegar por regiões e headings; buscadores perdem sinais de estrutura; e a manutenção fica mais
-cara. Vários outros erros deste relatório — o CTA sem link, o FAQ que não abre — são
-**consequências diretas** dessa escolha. Semântica, aqui, não é purismo: é a causa comum de
-dois erros críticos.
+cara. O CTA do Erro 02 precisa de `href` no `<a>` existente; a lógica comentada do FAQ é tratada no Erro 04. Essas causas são distintas dos problemas de estrutura semântica.
 
 ---
 
@@ -916,8 +698,7 @@ o mesmo seletor ou com seletores equivalentes redefinindo as mesmas propriedades
 
 **Por que acontece.** Desenvolvimento por acúmulo: em vez de localizar e ajustar a regra
 existente, novas regras foram anexadas ao fim do arquivo para sobrescrevê-la por ordem de
-cascata. É o padrão que também produziu o Erro 03 (cor cravada por elemento em vez de token) e
-explica por que o arquivo não tem variáveis.
+cascata. No Erro 03, a correção pontual é definir `color: #cfcfcf` no seletor existente.
 
 **Como eu corrigiria.** Consolidar as duplicatas, extrair os valores repetidos para custom
 properties em `:root` (cores, espaçamentos, raios, sombras) e adotar convenção de nomes
@@ -925,8 +706,8 @@ consistente. Ferramentas de análise (`css-analyzer`, coverage do DevTools) apon
 mortos e os repetidos.
 
 **Gravidade: Baixo.** Não afeta o usuário diretamente — o peso extra é marginal e a cascata
-resolve o conflito. É dívida técnica, não bug. Mas **é a causa estrutural** de vários erros
-visuais deste relatório: sem fonte única de verdade para cores e espaçamentos, a próxima seção
+resolve o conflito. É dívida técnica, não bug. Mas pode favorecer inconsistências
+visuais: sem fonte única de verdade para cores e espaçamentos, a próxima seção
 nasce com o mesmo tipo de problema.
 
 ---
@@ -1058,8 +839,8 @@ uma informação expressa em vários lugares, sem ninguém responsável por mant
 Quando um dos lugares diverge, não há nada que denuncie.
 
 **3. Layout construído para uma largura, adaptado depois.**
-`position: absolute` com coordenadas de desktop (Erro 05), larguras que não cedem (Erro 06),
-altura fixa em conteúdo variável (B02), alinhamento que só funciona enquanto uma coluna for
+`position: absolute !important` no breakpoint de 420px, deixando o contêiner com tamanho zero (Erro 05), `width: 110%` no breakpoint de 900px (Erro 06),
+conteúdo de depoimentos sem rolagem suficiente (B02), alinhamento que só funciona enquanto uma coluna for
 mais alta (B03). A responsividade foi tratada como ajuste posterior, não como premissa — e os
 erros se concentram nas faixas intermediárias, que é onde esse tipo de adaptação falha
 primeiro.
