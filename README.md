@@ -8,6 +8,14 @@ Landing page do Tenurima™, feita com HTML e CSS puro.
 
 🎥 **Vídeo (Etapa 3):** [pasta com o vídeo no Google Drive](https://drive.google.com/drive/folders/1jC4jREW9rA_A4FcwJhMvA97ycsJi7c1r?usp=drive_link)
 
+▶️ **Vídeo no YouTube:** [youtu.be/qeCFlYK9X5A](https://youtu.be/qeCFlYK9X5A)
+
+📝 **Pontos não citados no vídeo:**
+
+1. **Tempo:** Na verdade foram 9 horas no total para montar a LP, contando a separação dos arquivos, as variáveis e a implementação.
+2. **Sem bibliotecas:** não foi usada nenhuma biblioteca de UI, nem Swiper para o carrossel.
+3. **Feedback sobre o desafio:** qualquer participante que pesquisasse "Tenurima" no Google poderia ser redirecionado para [officialtenurima.com](https://officialtenurima.com/), cujo layout é quase idêntico e que expõe todos os arquivos de estilo e imagens. Bastaria copiar tudo, pedir para uma IA montar, alterar um ou outro detalhe e separar em commits. Por isso, na minha opinião, o desafio deveria ser refeito com um material que não esteja tão facilmente disponível.
+
 ## Como rodar
 
 O projeto é estático, não precisa de build nem de dependências. Para rodar com o Live Server:
