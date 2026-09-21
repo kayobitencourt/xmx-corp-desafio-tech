@@ -349,12 +349,17 @@
   background: var(--product-popular-bg);
 
   .card-ribbon {
+    padding-block: 20px;
     background: var(--secondary);
     font-weight: 600;
   }
 
+  .card-title {
+    padding-block: 24px;
+  }
+
   .bottles {
-    width: 91.15%;
+    width: 100%;
     aspect-ratio: 350 / 265;
     border-radius: 10px;
   }
@@ -526,6 +531,16 @@
   .card-product {
     flex: 1 1 172px;
     min-width: 0;
+  }
+
+  .pricing-card--popular {
+    .card-ribbon {
+      padding-block: 16px;
+    }
+
+    .card-title {
+      padding-block: 0;
+    }
   }
 
   .card-title {
