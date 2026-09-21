@@ -18,9 +18,107 @@
     <title>Tenurima™</title>
   </head>
   <body>
-    <header></header>
+    <header class="site-header">
+      <div class="site-header-wrapper">
+        <a href="#" class="site-logo">
+          <img
+            src="./assets/images/logo.svg"
+            alt="Tenurima"
+            width="239"
+            height="42"
+          />
+        </a>
+        <nav class="site-nav" aria-label="Principal">
+          <ul>
+            <li><a href="#pricing">Price</a></li>
+            <li><a href="#ingredients">Ingredientes</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </nav>
+        <a href="#" class="contact-button">
+          <img src="./assets/images/mail-icon.svg" alt="" />
+          Contact Us
+        </a>
+      </div>
+    </header>
     <main>
-      <section class="about">
+      <section class="hero">
+        <div class="hero-wrapper">
+          <div class="hero-content">
+            <p class="hero-rating">
+              <img src="./assets/images/stars.svg" alt="5 estrelas" />
+              4.9/5 Customer Rating
+            </p>
+            <h1>
+              Support Healthy Blood Pressure,
+              <span>Circulation &amp; Oxygen Levels.</span>
+            </h1>
+            <p class="hero-description">
+              Tenurima&trade; Blood Pressure
+              <strong>
+                Support was designed to help your body maintain healthy blood
+                pressure levels
+              </strong>
+              using a powerful blend of vitamins and botanical ingredients.
+            </p>
+            <div class="hero-cta">
+              <a href="#pricing" class="cta-button">
+                <img src="./assets/images/cart.svg" alt="" />
+                <p>order now</p>
+              </a>
+              <p>60 Day Money-Back Guarantee</p>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-product">
+              <img
+                class="hero-product-image"
+                src="./assets/images/product-bottle.png"
+                alt="Frasco de Tenurima Blood Pressure Support"
+              />
+              <img
+                class="hero-pill hero-pill--front"
+                src="./assets/images/pill.png"
+                alt=""
+              />
+              <img
+                class="hero-pill hero-pill--back"
+                src="./assets/images/pill.png"
+                alt=""
+              />
+              <img class="hero-cell" src="./assets/images/celula.png" alt="" />
+            </div>
+            <div class="hero-features">
+              <ul>
+                <li>
+                  <img src="./assets/images/check-circle.svg" alt="" />
+                  Supports healthy blood pressure
+                </li>
+                <li>
+                  <img src="./assets/images/check-circle.svg" alt="" />
+                  Promotes healthy blood flow
+                </li>
+                <li>
+                  <img src="./assets/images/check-circle.svg" alt="" />
+                  Helps maintain optimal oxygen levels
+                </li>
+              </ul>
+              <p class="hero-made-in">
+                <img src="./assets/images/usa-icon.svg" alt="" />
+                <span>Made in the USA</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <a href="#about" class="hero-scroll" aria-label="Rolar para a próxima seção">
+          <img src="./assets/images/scroll.svg" alt="" />
+        </a>
+        <div class="hero-divider" aria-hidden="true">
+          <img src="./assets/images/divisor-hero.svg" alt="" />
+        </div>
+      </section>
+      <section class="about" id="about">
         <div class="about-wrapper">
           <div class="about-product">
             <img
@@ -57,7 +155,7 @@
           </div>
         </div>
       </section>
-      <section class="ingredients">
+      <section class="ingredients" id="ingredients">
         <div class="ingredients-wrapper">
           <header class="ingredients-header">
             <p class="ingredients-eyebrow">Ingredients</p>
@@ -247,7 +345,7 @@
           </ul>
         </div>
       </div>
-      <section class="testimonials">
+      <section class="testimonials" id="testimonials">
         <div class="testimonials-wrapper">
           <header class="testimonials-header">
             <p class="testimonials-rating">
@@ -690,7 +788,7 @@
           </div>
         </div>
       </section>
-      <section class="faq">
+      <section class="faq" id="faq">
         <div class="faq-wrapper">
           <h2>Frequently Asked Questions</h2>
           <div class="faq-list">
