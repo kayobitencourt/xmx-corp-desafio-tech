@@ -43,3 +43,9 @@
     transition: none;
   }
 }
+
+@media (max-width: 930px) {
+  .cta-button {
+    padding-inline: 60px;
+  }
+}
