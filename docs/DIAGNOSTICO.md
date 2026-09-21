@@ -234,7 +234,7 @@ Ocorre em **todos os dispositivos e todas as larguras**. Não é condicional: é
 
 **Evidência — seção "Sobre" em 1344px:**
 
-![Seção Sobre com o parágrafo descritivo praticamente invisível sobre o fundo escuro](docs/img/erro-01-contraste.png)
+![Seção Sobre com o parágrafo descritivo praticamente invisível sobre o fundo escuro](img/erro-01-contraste.png)
 
 ### 2. Onde está
 
@@ -299,7 +299,7 @@ a página está quebrada.
 
 **Evidência — FAQ no estado em que permanece após os cliques:**
 
-![Bloco de FAQ com todas as perguntas fechadas e setas indicando expansão, sem resposta ao clique](docs/img/erro-04-faq.png)
+![Bloco de FAQ com todas as perguntas fechadas e setas indicando expansão, sem resposta ao clique](img/erro-04-faq.png)
 
 ### 2. Onde está
 
@@ -753,11 +753,11 @@ da seção, sem respiro.
 
 **Antes — dentro da faixa afetada:**
 
-![Seção Sobre na faixa problemática: base dos frascos cortada e botão ORDER NOW encostado no limite](docs/img/erro-02-antes.png)
+![Seção Sobre na faixa problemática: base dos frascos cortada e botão ORDER NOW encostado no limite](img/erro-02-antes.png)
 
 **Depois — com a correção aplicada:**
 
-![Mesma seção após a correção: frascos completos apoiados na base e botão com respiro inferior](docs/img/erro-02-depois.png)
+![Mesma seção após a correção: frascos completos apoiados na base e botão com respiro inferior](img/erro-02-depois.png)
 
 **Onde está.** `.sobre .container` e `.sobre .container .content`
 
