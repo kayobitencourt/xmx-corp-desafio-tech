@@ -225,6 +225,7 @@
 }
 
 .price {
+  position: relative;
   color: var(--brand-primary-dark);
   font-family: 'Inter';
   font-size: 64px;
@@ -239,6 +240,9 @@
   }
 
   .price-unit {
+    position: absolute;
+    bottom: 10px;
+    right: -45px;
     color: var(--gray-dark);
     font-size: 24px;
     font-weight: 400;
@@ -572,6 +576,7 @@
     }
 
     .price-unit {
+      position: static;
       font-size: 16px;
     }
   }
