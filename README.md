@@ -6,6 +6,8 @@ Landing page do Tenurima™, feita com HTML e CSS puro.
 
 📋 **Diagnóstico (Etapa 1):** a auditoria da página `biogutex.com` está em [`docs/DIAGNOSTICO.md`](docs/DIAGNOSTICO.md), com as imagens de apoio em `docs/img/`.
 
+🎥 **Vídeo (Etapa 3):** [pasta com o vídeo no Google Drive](https://drive.google.com/drive/folders/1jC4jREW9rA_A4FcwJhMvA97ycsJi7c1r?usp=drive_link)
+
 ## Como rodar
 
 O projeto é estático, não precisa de build nem de dependências. Para rodar com o Live Server:
