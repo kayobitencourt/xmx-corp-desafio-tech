@@ -2,6 +2,8 @@
 
 Landing page do Tenurima™, feita com HTML e CSS puro.
 
+🔗 **Projeto ao vivo:** [xmx-corp-desafio-tech.vercel.app](https://xmx-corp-desafio-tech.vercel.app/)
+
 ## Como rodar
 
 O projeto é estático, não precisa de build nem de dependências. Para rodar com o Live Server:
