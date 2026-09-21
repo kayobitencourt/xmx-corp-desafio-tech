@@ -13,11 +13,39 @@
 .benefits-divider {
   position: absolute;
   top: -30px;
-  left: 50%;
-  translate: -50% 0;
-  width: 1920px;
-  max-width: none;
+  left: 0;
+  right: 0;
+  height: 61px;
   pointer-events: none;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1920px;
+    max-width: none;
+    height: 61px;
+    translate: -50% 0;
+  }
+
+  /* laterais: continuam o svg em telas maiores que ele */
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: max(0px, calc(50% - 960px + 1px));
+    height: 100%;
+    background: var(--white);
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
 }
 
 .benefits-wrapper {
