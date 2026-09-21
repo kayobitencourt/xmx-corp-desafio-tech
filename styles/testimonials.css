@@ -247,96 +247,81 @@
 
 @media (max-width: 768px) {
   .testimonials {
-    padding-inline: 20px;
-    padding-block: 40px;
+    padding-inline: 90px;
     overflow: hidden;
   }
 
-  .testimonials-wrapper {
-    gap: 32px;
-  }
-
-  .testimonials-header {
-    margin-bottom: 0;
-
-    h2 {
-      font-size: 28px;
-    }
+  .testimonials-header h2 {
+    font-size: 32px;
   }
 
   .testimonials-rating {
-    font-size: 16px;
-    gap: 12px;
+    font-size: 18px;
 
     img {
-      height: 22px;
+      height: 24px;
     }
   }
 
-  /* o track sangra até a borda da tela para o próximo card "espiar" */
   .testimonials-track {
-    gap: 16px;
-    margin-right: -20px;
-    /* folga para o último card também encostar no início do track,
-       assim as setas (fixas) sempre ficam alinhadas com o card visível */
-    padding-right: calc(100cqw + 20px - var(--card-w));
+    margin-right: -90px;
+    /* folga para o último card encostar no início e as setas alinharem */
+    padding-right: calc(100cqw + 90px - min(355px, 100cqw));
   }
 
-  .testimonials-track,
-  .testimonial,
-  .carousel-arrow {
-    --card-w: min(calc(100cqw - 32px), 480px);
+  .testimonial-content blockquote p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
   }
 
   .testimonial {
-    flex-basis: var(--card-w);
-    gap: 20px;
-    padding-bottom: 32px;
-    border-radius: 16px;
+    flex-basis: min(355px, 100cqw);
   }
 
-  .testimonial-photo {
-    aspect-ratio: 4 / 3;
-    object-position: center var(--photo-y-mobile, 40%);
-  }
-
-  .testimonial-content {
-    padding-inline: 20px;
-    gap: 16px;
-  }
-
-  .testimonial-stars {
-    width: 110px;
-    height: auto;
-  }
-
-  .testimonial-author cite {
-    font-size: 16px;
-  }
-
-  .testimonial-verified {
-    font-size: 14px;
-  }
-
-  /* setas dentro da foto, centralizadas verticalmente nela */
   .carousel-arrow {
-    top: calc(var(--card-w) * 0.375);
-    width: 44px;
-    height: 44px;
+    top: calc(min(355px, 100cqw) * 0.81);
   }
 
   .carousel-arrow--prev {
-    left: 8px;
+    left: -31px;
   }
 
   .carousel-arrow--next {
     right: auto;
-    left: calc(var(--card-w) - 44px - 8px);
+    left: calc(min(355px, 100cqw) - 31px);
   }
 
   .testimonials-wrapper .cta-button {
     align-self: stretch;
     padding-inline: var(--padding-large);
+  }
+}
+
+@media (max-width: 460px) {
+  .testimonials {
+    padding-inline: 20px;
+    padding-block: 40px;
+  }
+
+  .testimonials-track {
+    margin-right: -20px;
+    padding-right: 52px;
+  }
+
+  .testimonial {
+    flex-basis: calc(100cqw - 32px);
+  }
+
+  .carousel-arrow {
+    top: calc((100cqw - 32px) * 0.81);
+  }
+
+  .carousel-arrow--prev {
+    left: -20px;
+  }
+
+  .carousel-arrow--next {
+    left: calc(100cqw - 32px - 31px);
   }
 }
 
