@@ -1041,21 +1041,6 @@ principal em todas elas.
 
 ---
 
-# Suspeitas não confirmadas
-
-| Suspeita                                                                 | O que observei                                                              | Por que não confirmei                                                                                                                                                     |
-| ------------------------------------------------------------------------ | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Imagens decorativas do hero com o mesmo problema de `position: absolute` | Pílulas e folhas parecem usar a mesma técnica da imagem do produto          | Não verifiquei individualmente o comportamento de cada uma em mobile                                                                                                      |
-| URL de destino do card de 6 garrafas                                     | Os outros usam `/linkoffer` e `/linkoffer3`; o padrão sugere `/linkoffer6`  | Inferência a partir do padrão. **Chutar URL de oferta manda tráfego para lugar errado** — precisa de confirmação do cliente                                               |
-| Divergência entre preço exibido e preço cobrado no checkout              | O card exibe $150 quando a aritmética aponta $294                           | Não testei o fluxo de compra. Se o gateway cobra $294, há divergência entre anúncio e cobrança                                                                            |
-| Relação entre o `-->` órfão (B09) e o código comentado do FAQ (Erro 04)  | O `-->` aparece no fim do bloco de FAQ, na mesma região do trecho comentado | Se o comentário do FAQ foi feito com `<!-- -->` e aninhado ou fechado errado, os dois erros teriam a mesma origem. Não verifiquei a correspondência exata no código-fonte |
-| Outras fontes de scroll horizontal                                       | Confirmei a seção de ofertas como causa                                     | Não varri elemento por elemento em todas as larguras                                                                                                                      |
-
-> Registrar aqui é preferível a apresentar um chute como certeza. Uma suspeita bem descrita é
-> informação; um palpite disfarçado de diagnóstico é ruído.
-
----
-
 # Observações gerais
 
 Três padrões atravessam os 19 problemas e explicam a maioria deles:
