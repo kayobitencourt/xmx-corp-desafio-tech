@@ -300,6 +300,8 @@
   s {
     margin-right: 8px;
     color: var(--gray-dark);
+    text-decoration-color: var(--red-border);
+    text-decoration-thickness: 2px;
   }
 
   sup {
