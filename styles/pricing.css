@@ -446,9 +446,14 @@
 
   .save-badge {
     left: 63.02%;
-    top: 55.67%;
+    top: 48%;
     width: 26.31%;
     font-size: 4.69cqw;
+    background: var(--red-badge);
+  }
+
+  .save-badge::before {
+    display: none;
   }
 
   .bottles-count {
