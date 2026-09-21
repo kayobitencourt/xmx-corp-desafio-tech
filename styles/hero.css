@@ -536,6 +536,20 @@
     padding-inline: 20px;
   }
 
+  .site-header-wrapper {
+    gap: 12px;
+  }
+
+  .site-logo img {
+    width: 140px;
+  }
+
+  .contact-button {
+    gap: 8px;
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
   .hero {
     --hero-pad: 20px;
 
