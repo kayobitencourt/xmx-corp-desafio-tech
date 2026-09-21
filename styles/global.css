@@ -6,14 +6,12 @@
   box-sizing: border-box;
 }
 
-img {
-  width: 100%;
-  display: block;
-  height: auto;
-}
-
 body {
   background: red;
+}
+
+a {
+  text-decoration: none;
 }
 
 :root {
@@ -28,12 +26,15 @@ body {
   --red-primary: #ff2d2d;
   --red-border: #ff1f1f;
   --white: #ffffff;
+  --product-popular-bg: #f9e4e4;
 
   /* gradients */
   --gradient-green: linear-gradient(180deg, #35f60f 0%, #1fa604 100%);
 
   /* values */
-  -padding-small: 12px;
+  --line-heigh-heading: 130%;
+  --padding-small: 12px;
+  --padding-medium: 48px;
   --padding-default: 80px;
   --padding-xl: 120px;
   --container-width: 1260px;
