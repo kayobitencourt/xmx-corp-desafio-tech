@@ -57,6 +57,11 @@
   flex: 0 1 384px;
   min-width: 0;
 
+  color: inherit;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,6 +72,20 @@
   border: 1px solid var(--secondary);
   border-radius: 20px;
   background: var(--white);
+}
+
+.pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(169, 63, 72, 0.25);
+}
+
+.pricing-card:active {
+  transform: translateY(0);
+}
+
+.pricing-card:focus-visible {
+  outline: 3px solid var(--secondary);
+  outline-offset: 4px;
 }
 
 .card-ribbon {
@@ -254,31 +273,10 @@
 }
 
 .buy-now {
+  display: block;
   width: 100%;
-  transition:
-    transform 0.2s ease,
-    filter 0.2s ease;
-
-  img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 22px;
-  }
-}
-
-.buy-now:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.05);
-}
-
-.buy-now:active {
-  transform: translateY(0);
-}
-
-.buy-now:focus-visible {
-  outline: 3px solid var(--secondary);
-  outline-offset: 3px;
+  height: auto;
+  border-radius: 22px;
 }
 
 .payment-cards {
@@ -314,7 +312,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .buy-now {
+  .pricing-card {
     transition: none;
   }
 }
